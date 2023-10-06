@@ -3,17 +3,101 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
     </head>
     <body>
-        <h1>User After Login: Home Page</h1>
-        <a href="/logout">Logout</a>
-        <h1>Nome: [[${user.nomeCompleto}]]</h1>
-        <h1>Email: [[${user.email}]]</h1>
-        <h1>Qualificacao: [[${user.qualificacao}]]</h1>
+        <div class="container">
+            <div class="card border-secondary mb-3 mt-3">
+                <div class="card-body">
+<!--                    <h1>User After Login: Home Page</h1>
+                    <a href="/logout">Logout</a>
+                    <h1>Nome: [[${user.nomeCompleto}]]</h1>
+                    <h1>Email: [[${user.email}]]</h1>
+                    <h1>Qualificacao: [[${user.qualificacao}]]</h1>
+                    <br>
+                    <br>-->
+
+                    <table class="table table-bordered table-striped" id="alunosTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>GRR</th>
+                                <th>Nascimento</th>
+                                <th>Curso</th>
+                                <th>Carga Horaria Curso</th>
+                                <th>Periodo Curso</th>
+                                <th>Periodo Atual</th>
+                                <th>Reprovacoes</th>
+                                <th>Carga Horaria Integralizada</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //var table = $('#example').DataTable();
+            //var info = table.page.info();
+            var table = $('#alunosTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: false,
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registro(s)",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registro(s)",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "Mostrar _MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar: ",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+                ajax: {
+                    url: 'datatableAlunos',
+                    type: 'GET'
+                },
+                columns: [
+                    {data: 'nome'},
+                    {data: 'grr'},
+                    {data: 'data_nascimento'},
+                    {data: 'curso'},
+                    {data: 'carga_horaria_curso'},
+                    {data: 'periodo_curso'},
+                    {data: 'periodo_atual'},
+                    {data: 'reprovacoes'},
+                    {data: 'carga_horaria_integralizada'}
+                ]
+            });
+//            $.ajax({
+//                url: "datatableAlunos",
+//                success: function (result){
+//                    console.log(result)
+//                }
+//            });
+
+        });
+    </script>
 </html>

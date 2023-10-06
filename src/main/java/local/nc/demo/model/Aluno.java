@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
 /**
@@ -16,17 +17,19 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class UserDtls {
+@Table(name = "teste_table_alunos")
+public class Aluno {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String grr;
     
-    private String nomeCompleto;
-    private String email;
-    private String endereco;
-    private String qualificacao;
-    private String senha;
-    private String role;
-    private String mobileNumber;
+    private String nome;
+    private String data_nascimento;
+    private String curso;
+    private Integer carga_horaria_curso;
+    private Integer periodo_curso;
+    private Integer periodo_atual;
+    private Integer reprovacoes;
+    private Integer carga_horaria_integralizada;
 }
